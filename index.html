@@ -480,7 +480,14 @@
 </head>
 <body>
   <div id="root"></div>
-
+  
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="subject" />
+    <textarea name="message"></textarea>
+  </form>
+  
   <script type="text/babel">
     const { useState, useEffect, useRef } = React;
 
@@ -835,18 +842,19 @@
                     </div>
                   </div>
                 </div>
-                <form className="contact-form" netlify>
+                <form className="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                  <input type="hidden" name="form-name" value="contact" />
                   <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Your Name" />
+                    <input type="text" name="name" className="form-control" placeholder="Your Name" required />
                   </div>
                   <div className="form-group">
-                    <input type="email" className="form-control" placeholder="Your Email" />
+                    <input type="email" name="email" className="form-control" placeholder="Your Email" required />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Subject" />
+                    <input type="text" name="subject" className="form-control" placeholder="Subject" required />
                   </div>
                   <div className="form-group">
-                    <textarea className="form-control" placeholder="Your Message"></textarea>
+                    <textarea name="message" className="form-control" placeholder="Your Message" required></textarea>
                   </div>
                   <button type="submit" className="cta-btn">Send Message</button>
                 </form>
